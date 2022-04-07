@@ -1,14 +1,14 @@
 package com.didacfacephi.demo.models
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 
 @Document
-class User {
+data class User(
     @Id
-    var id=""
-    var name=""
-    var email=""
-    var password=""
-
-}
+    var id: String ="",
+    var name: String="",
+    var email: String="",
+    var password: String=""
+)
