@@ -23,15 +23,14 @@ class UserService(
 
     //IUserService
     override fun findAllUsers(): MutableList<User> {
-        var lista = this.userRepository.findAll()
+        val lista = this.userRepository.findAll()
         println(lista)
         return lista
     }
 
     override fun findUserById(id: String): Optional<User> {
-        var user = this.userRepository.findById(id)
+        val user = this.userRepository.findById(id)
 
-        //println(user)
 
         return user
     }
