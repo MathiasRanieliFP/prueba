@@ -7,7 +7,7 @@ import java.util.Date
 @Document
 data class Book (
     @Id
-    val _id: String?,
+    var _id: String?,
     var titulo: String,
     var isbn: String,
     var resumen: String,
