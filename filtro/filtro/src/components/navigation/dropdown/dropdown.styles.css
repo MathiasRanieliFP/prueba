@@ -1,0 +1,20 @@
+.dropdown-content{
+    display: none;
+    background-color: #1e2323;
+    position: absolute;
+    z-index: 101;
+    text-align: left;
+    padding : 20px 12px 20px 0px 
+}
+.dropdown-content a{
+    padding : 3px 10px 3px 8px ;
+    display: block
+}
+/* .dropdown-content:last-child{
+    padding-bottom: 5px;
+} */
+.dropdown{
+position: relative;
+display: inline-block;  
+cursor: pointer;         
+}         
