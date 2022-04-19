@@ -12,16 +12,7 @@ import java.util.*
 class BookService(
     @Autowired
     private val bookRepository: BookRepository
-): IBookService {
-
-    fun elIdExiste(id: String): Boolean{
-        try {
-            val book = this.bookRepository.findById(id)
-            return true
-        } catch (e: java.lang.Exception){
-            return false
-        }
-    }
+) : IBookService {
 
     //IBookService
     override fun getAllBooks(): MutableList<Book> {
@@ -29,13 +20,7 @@ class BookService(
     }
 
     override fun getBookById(id: String): Optional<Book> {
-        if (elIdExiste(id)){
-            return this.bookRepository.findById(id)
-
-        } else{
-            var book: Optional<Book>? = null
-            return book!!
-        }
+        return this.bookRepository.findById(id)
     }
 
     override fun addBook(book: Book): Book {
@@ -44,27 +29,24 @@ class BookService(
     }
 
     override fun updateBook(id: String, book: Book): Book {
-        if (elIdExiste(id)){
-            val oldBook: Book = this.bookRepository.findById(id).orElse(null)
+        val oldBook: Book = this.bookRepository.findById(id).orElse(null)
 
-            with(oldBook){
-                titulo = book.titulo
-                isbn = book.isbn
-                resumen = book.resumen
-                fechaDeCreacion = book.fechaDeCreacion
-                fechaDePublicacion = book.fechaDePublicacion
-                autor = book.autor
-                editorial = book.editorial
-                urlPdf = book.urlPdf
-                imgPortada = book.imgPortada
-                categoria = book.categoria
-                idioma = book.idioma
-                valoracion = book.valoracion
-            }
-            return this.bookRepository.save(oldBook)
-        } else {
-            return book
+        with(oldBook) {
+            titulo = book.titulo
+            isbn = book.isbn
+            resumen = book.resumen
+            fechaDeCreacion = book.fechaDeCreacion
+            fechaDePublicacion = book.fechaDePublicacion
+            autor = book.autor
+            editorial = book.editorial
+            urlPdf = book.urlPdf
+            imgPortada = book.imgPortada
+            categoria = book.categoria
+            idioma = book.idioma
+            valoracion = book.valoracion
         }
+        
+        return this.bookRepository.save(oldBook)
     }
 
     override fun deleteBook(id: String) {
