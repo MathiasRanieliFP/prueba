@@ -11,7 +11,7 @@ interface IBookService {
 
     fun addBook(book: Book): Book
 
-    fun updateBook(id: String, book: Book)
+    fun updateBook(id: String, book: Book): Book
 
     fun deleteBook(id: String)
 }

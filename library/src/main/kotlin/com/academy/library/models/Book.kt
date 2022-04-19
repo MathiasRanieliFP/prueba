@@ -1,10 +1,11 @@
 package com.academy.library.models
 
+import com.academy.library.utils.Constants
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.util.Date
 
-@Document
+@Document(collection = Constants.DBBOOK)
 data class Book (
     @Id
     var _id: String?,
@@ -19,6 +20,6 @@ data class Book (
     var imgPortada: String,
     var categoria: String,
     var idioma: String,
-    var valoracion: Float
+    var valoracion: Double
 
     )
