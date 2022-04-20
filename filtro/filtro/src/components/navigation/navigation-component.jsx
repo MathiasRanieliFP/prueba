@@ -29,7 +29,7 @@ export const Navigation = (props) => {
                       {
                         categorias.map(category =>{console.log(category)
                           return(
-                            <Fragment>
+                            <Fragment key={category.id}>
                             <p><input type="checkbox" name={category.name}/><a>{category.name}</a></p>
                           </Fragment>
                           )
@@ -40,8 +40,8 @@ export const Navigation = (props) => {
                     {
                         idiomas.map(idioma =>{
                           return(
-                            <Fragment>
-                            <p><input type="checkbox" /><a>{idioma.name}</a></p>
+                            <Fragment key={idioma.id}>
+                            <p><input type="checkbox" name={idioma.name}/><a>{idioma.name}</a></p>
                           </Fragment>
                           )
                         })
