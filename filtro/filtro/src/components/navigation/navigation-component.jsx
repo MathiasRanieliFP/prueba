@@ -9,12 +9,14 @@ import "./navigation-style.css"
 
 export const Navigation = (props) => {
     const [dropdown, setDropdown] = useState(false);
-    
+    console.log(props)
     const abrirCerrarDropdown = () =>{
         setDropdown(!dropdown);
     }
-    const{categorias} = props
-    const{idiomas} = props   
+    const categorias = props.categorias
+    const idiomas = props.idiomas 
+    
+   
 
     console.log(idiomas + "idi" + categorias +"cats")
     return (
@@ -25,10 +27,10 @@ export const Navigation = (props) => {
                 <DropdownMenu>
                      <div className="categorias"><h6>Categorías</h6> <br/>
                       {
-                        categorias.map(category =>{
+                        categorias.map(category =>{console.log(category)
                           return(
                             <Fragment>
-                            <p><input type="checkbox" /><a>{category.name}</a></p>
+                            <p><input type="checkbox" name={category.name}/><a>{category.name}</a></p>
                           </Fragment>
                           )
                         })

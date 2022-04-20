@@ -11,11 +11,10 @@ const idiomas =
 {id:1, name:"Español"},
 {id:2, name:"Inglés"}
 ]
-const datos = {categorias,idiomas}
 const App = () => {
   return (
 
-    <Navigation datos = {datos} />
+    <Navigation categorias={categorias} idiomas={idiomas}/>
 
 
   );
