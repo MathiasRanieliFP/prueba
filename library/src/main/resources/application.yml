@@ -1,9 +1,13 @@
 spring:
   data:
     mongodb:
-      #host: 127.0.0.1
-      #port: 27017
+      host: 127.0.0.1
+      #Conexion al mongodb del docker en local
+      #port: 27016
       #database: library
+      #authentication-database: admin
+      #username: root
+      #password: example
       uri: mongodb+srv://rafaelgomez:Nt3U,ElELrsC2..}?(1]@clusterfacephi.1fhkn.mongodb.net/apiKotlin?retryWrites=true&w=majority
       repositories:
         type: auto

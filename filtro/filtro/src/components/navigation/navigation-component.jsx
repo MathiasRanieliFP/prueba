@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import "./navigation-style.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import { Estrellas } from "./estrellas-component";
 
 
 
@@ -12,8 +13,53 @@ export const Navigation = (props) => {
     }
     const categorias = props.categorias
     const idiomas = props.idiomas 
-    
-   
+    const valoracion = props.valoracion 
+
+    const checkboxChangeCategorias = (event) => {
+      console.log(event.target.value);
+
+      categorias.map( c => {
+        if(c.name === event.target.value){
+          return c.check = event.target.checked;
+        }
+      });
+    }
+
+    const checkboxChangeIdiomas = (event) => {
+      console.log(event.target.value);
+
+      idiomas.map( i => {
+        if(i.name === event.target.value){
+          return i.check = event.target.checked;
+        }
+      })
+    }
+
+    const clickAplicar=() => {
+      let salida = "bd.libros.find( $and: [{$or:["
+      categorias.map(c => {
+
+        if(c.check){
+          salida+= "{\"categoria\":\""+c.name+"\"}," 
+        }
+
+      });
+
+      salida+="]}, {$or:["
+
+      idiomas.map(i => {
+
+        if(i.check){
+          salida+= "{\"idioma\":\""+i.name+"\"},"
+        }
+
+      });
+
+      salida+= "]}]});"
+
+      console.log(salida);
+    }
+
     return (
       <Fragment>
         <div className='navigation'>
@@ -25,8 +71,8 @@ export const Navigation = (props) => {
                         categorias.map(category =>{
                           return(
                             <Fragment key={category.id}>
-                            <p><input type="checkbox" name={category.name}/><label>{category.name}</label></p>
-                          </Fragment>
+                              <p><input type="checkbox" name="categorias" value={category.name} onChange={checkboxChangeCategorias} /><label>{category.name}</label></p>
+                            </Fragment>
                           )
                         })
                       }
@@ -36,21 +82,32 @@ export const Navigation = (props) => {
                         idiomas.map(idioma =>{
                           return(
                             <Fragment key={idioma.id}>
-                            <p><input type="checkbox" name={idioma.name}/><label>{idioma.name}</label></p>
-                          </Fragment>
+                              <p><input type="checkbox" name="idiomas" value={idioma.name} onChange={checkboxChangeIdiomas} /><label>{idioma.name}</label></p>
+                            </Fragment>
                           )
                         })
                       }
                     </div>
                     <div className="valoraciones"><h5>Valoración</h5>
-                    <p><input type={"checkbox"}></input><label><FontAwesomeIcon icon={faStar}/><FontAwesomeIcon icon={faStar}/><FontAwesomeIcon icon={faStar}/><FontAwesomeIcon icon={faStar}/><FontAwesomeIcon icon={faStar}/></label></p>
+                    {
+                      valoracion.map(val =>{
+                        return(
+                          <Fragment>
+                            <p><input type="checkbox" name="valoracion" value={val.value} />
+                              <Estrellas numEstrellas= {val.value} />
+                            </p>
+                          </Fragment>
+                        )
+                      })
+                    }
+                    <p><input type={"checkbox"} value= "5"></input><label><FontAwesomeIcon icon={faStar}/><FontAwesomeIcon icon={faStar}/><FontAwesomeIcon icon={faStar}/><FontAwesomeIcon icon={faStar}/><FontAwesomeIcon icon={faStar}/></label></p>
                     <p><input type={"checkbox"}></input><label><FontAwesomeIcon icon={faStar}/><FontAwesomeIcon icon={faStar}/><FontAwesomeIcon icon={faStar}/><FontAwesomeIcon icon={faStar}/></label></p>
                     <p><input type={"checkbox"}></input><label><FontAwesomeIcon icon={faStar}/><FontAwesomeIcon icon={faStar}/><FontAwesomeIcon icon={faStar}/></label></p>                    
                     <p><input type={"checkbox"}></input><label><FontAwesomeIcon icon={faStar}/><FontAwesomeIcon icon={faStar}/></label></p>                    
                     <p><input type={"checkbox"}></input><label><FontAwesomeIcon icon={faStar}/></label></p>                    
                     </div>
                     <div className="aplicar">
-                        <button className="btn-aplicar">Aplicar</button>
+                        <button className="btn-aplicar" onClick={clickAplicar} >Aplicar</button>
                     </div>
                 </div>
             </div>
